@@ -1,0 +1,90 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #B7B7B7;
+    color: black;
+}
+
+tr {
+    border-bottom: 1px solid white;
+}
+
+tr:nth-child(even) {
+    background-color: #EDC6B1;
+    color: black;
+}
+
+td {
+    padding-left: 7px;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    position: relative;
+    left: 10%;
+}
+
+.header {
+    display: flex;
+}
+
+.text_input {
+    height: 24px;
+    position: absolute;
+    right: 8%;
+    top: 5%;
+    border: 0px;
+    border-radius: 5px;
+}
+
+#btn {
+    height: 26px;
+    position: absolute;
+    right: 3%;
+    top: 5%;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #EDC6B1;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+ul {
+    display: flex;
+}
+ul li{
+    margin-left: 20px;
+}
+
+.buttons {
+    list-style: none;
+    padding-left: 160px;
+    padding-top: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.pagination{
+    display: flex;
+    justify-content: space-around;
+}
+#page{
+    list-style: none;
+    position: relative;
+    left: 6%;
+}
+#info{
+    position: relative;
+    right: 6%;
+}
+.pageSelect:hover{
+ background-color: #EDC6B1;
+ padding: 3px;
+   
+}

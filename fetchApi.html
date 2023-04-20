@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data table from Api</title>
+    <link rel="stylesheet" href="./Assets/CSS/fetchApi.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>DATA TABLE</h1>
+        <ul>
+          <li id="run" class="buttons" onclick="fetchApi()">Posts</li>
+          <li id="run2" class="buttons" onclick="fetchApi2()">Todo's</li>
+          <li id="run3" class="buttons" onclick="fetchApi3()">Album's</li>
+        </ul>
+        <label for="text"></label>
+        <input
+          type="text"
+          name="text"
+          id="input"
+          class="text_input"
+          placeholder="Search"
+        />
+        <button id="btn">Search</button>
+      </div>
+
+      <table>
+        <thead id="tableHead"></thead>
+        <tbody id="first"></tbody>
+      </table>
+      <div class="pagination">
+        <div id="info">
+            <p>Showing 1 to 25 of 57 entries</p>
+        </div>
+        <ul id="pages">
+        </ul>
+      </div>
+    </div>
+    <script src="./Assets/Js/fetchApi.js"></script>
+  </body>
+</html>

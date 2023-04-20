@@ -1,0 +1,136 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: black;
+}
+
+.container{
+    margin: 20px auto;
+    background-color: aqua;
+    width: 450px;
+    border-radius: 10px;
+    position: relative;
+}
+.container h1{
+    text-align: center;
+    padding-top: 20px;
+}
+.header{
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+#text{
+    border: 0px;    
+    border-radius: 5px;
+    height: 25px;
+    width: 70%;
+    padding-left: 10px;
+    outline: none;
+}
+#btnAdd{
+    border: 0px;
+    border-radius: 5px;
+    height: 25px;
+    width: 50px;
+    background-color: red;
+    color: white;
+}
+.todoLists{
+    display: flex;
+}
+#checkbox{
+    margin: 20px 30px 10px 37px;
+}
+#task{
+    margin: 20px 0px 10px 0px;
+    cursor: pointer;
+}
+#task i{
+    margin-left: 216px;
+}
+.todoLists > input[type = checkbox]:checked + #task{
+    text-decoration: line-through;
+}
+
+li{
+    display: flex;
+    list-style: none;
+    padding: 20px;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+}
+#list{
+    width: 100%;
+}
+.todoItem{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+.fa-solid{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.childDiv{
+    position: relative;
+    left: 174px;
+    padding: 10px;
+}
+.inputV{
+    position: absolute;
+    left: 40px;
+    border: 0px;
+    top: 10px;
+    background-color: transparent;
+    outline: none;
+}
+.error{
+    position: relative;
+}
+#errorOne{
+    color: red;
+    font-size: 15px;
+    display: none;
+    padding-left: 36px;
+    padding-bottom: 20px;
+}
+#errorTwo{
+    position: absolute;
+    bottom: 1px;
+    left: 130px;
+    color: red;
+    font-size: 15px;
+    display: none;
+}
+.filter{
+    display: flex;
+    justify-content: space-around;
+}
+
+#selectF{
+    padding: 2px;
+    margin: 20px;
+    position: relative;
+    bottom: 21px;
+    right: 43px;
+    border: 0px;
+    background-color: transparent;
+    outline: none;
+}
+#btnFilter{
+    height: 25px;
+    width: 50px;
+    border: 0px;
+    background-color: green;
+    border-radius: 5px;
+    position: relative;
+    bottom: 2px;
+    right: 150px;
+    color: white;
+}
