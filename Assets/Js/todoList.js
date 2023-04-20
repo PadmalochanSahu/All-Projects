@@ -1,11 +1,17 @@
 let btnAdd = document.getElementById('btnAdd');
 
+let todolist = [];
 btnAdd.addEventListener('click', () => {
     let inputValue = document.getElementById('text').value;
+    
     if (inputValue == "") {
         document.getElementById('errorOne').style.display = "block";
-    } else {
+    // }else if(todolist.forEach(element =>{if(element == inputValue){ return true} })){
+    //     document.getElementById('errorTwo').style.display = "block";
+    }else{
+
         document.getElementById('errorOne').style.display = "none";
+        document.getElementById('errorTwo').style.display = "none";
         document.querySelector('#text').value = '';
         let newList = document.querySelector('#list');
         let mainDiv = document.createElement('div');
@@ -65,13 +71,12 @@ btnAdd.addEventListener('click', () => {
                 console.log('uncompleted')
             }
         })
-        let todolist = [];
-        todolist.push(task.value);
-        console.log(todolist);
         
+
     }
     
-    
+    todolist.push(inputValue);
+    console.log(todolist);
 });
 
 
