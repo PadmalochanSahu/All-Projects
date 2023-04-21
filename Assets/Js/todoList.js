@@ -3,13 +3,9 @@ let btnAdd = document.getElementById('btnAdd');
 let todolist = [];
 btnAdd.addEventListener('click', () => {
     let inputValue = document.getElementById('text').value;
-    
     if (inputValue == "") {
         document.getElementById('errorOne').style.display = "block";
-    // }else if(todolist.forEach(element =>{if(element == inputValue){ return true} })){
-    //     document.getElementById('errorTwo').style.display = "block";
     }else{
-
         document.getElementById('errorOne').style.display = "none";
         document.getElementById('errorTwo').style.display = "none";
         document.querySelector('#text').value = '';
