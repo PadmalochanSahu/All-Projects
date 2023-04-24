@@ -95,18 +95,17 @@ li{
 }
 #errorOne{
     color: red;
-    font-size: 15px;
+    font-size: 13px;
     display: none;
     padding-left: 36px;
     padding-bottom: 20px;
 }
 #errorTwo{
-    position: absolute;
-    bottom: 1px;
-    left: 130px;
     color: red;
-    font-size: 15px;
+    font-size: 13px;
     display: none;
+    padding-left: 36px;
+    padding-bottom: 20px;
 }
 .filter{
     display: flex;
