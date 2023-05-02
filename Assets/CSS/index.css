@@ -1,31 +1,38 @@
 *{
     margin: 0px;
     padding: 0px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Kanit', sans-serif;
+}
+body{
+    background-color: #D8D8D8;
 }
 .container{
     margin: 10px;
   
 }
 .container h1{
+    font-family: 'Sigmar', cursive;
     text-align: center;
+    letter-spacing: 0.5px;
 }
-.card_one, .card_two, .card_three{
+.card_one, .card_two, .card_three, .card_four{
     background-color: red;
     width: 20%;
     border-radius: 10px;
     background-color: #F0F0F0;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.card_one img, .card_two img, .card_three img{
-    width: 100%;
-    height: 185px;
-    border-radius: 10px 10px 0px 0px;
+.card_one img, .card_two img, .card_three img, .card_four img{
+    width: 90%;
+    height: 153px;
+    margin-left: 13px;
+    margin-top: 13px;
+    border-radius: 10px;
 
 }
 
 .dis{
-    padding-left: 10px;
+    padding-left: 17px;
 }
 h2{
     text-align: center;
@@ -46,4 +53,19 @@ h2{
 .link{
 position: absolute;
 bottom: 5px;
+}
+.btnSearch{
+    width: 209%;
+    margin-left: 3px;
+    margin-bottom: 7px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: #3481b1;
+    height: 35px;
+    cursor: pointer;
+}
+.btnSearch a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
 }
