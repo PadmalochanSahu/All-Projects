@@ -1,3 +1,23 @@
+let loaded = [];
+let lstodo = localStorage.getItem("Todo's");
+lstodo = JSON.parse(lstodo);
+console.log(lstodo);
+for (let i = 0; i < lstodo.length; i++) {
+ loaded.push(lstodo[i].name);
+}
+let initial = document.getElementById('list');
+for (let i = 0; i < loaded.length; i++) {
+  let init = `<div class="todoItem">
+              <input type="text" class="inputV" value= "${loaded[i]}" readonly>
+              <div class="childDiv">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-trash" id="del" ></i>
+              </div>
+              </div>`;
+  initial.innerHTML += init;
+}
+
+
 let btnAdd = document.getElementById("btnAdd");
 let todolist = [];
 let CheckTodo = [];
@@ -51,6 +71,7 @@ btnAdd.addEventListener("click", () => {
         mainDiv.remove();
         todolist.splice(CheckTodo.indexOf(task.value), 1);
         CheckTodo.splice(CheckTodo.indexOf(task.value), 1);
+        loaded.splice(CheckTodo.indexOf(task.value), 1);
       }
     });
     // Edit
@@ -147,4 +168,7 @@ btnAdd.addEventListener("click", () => {
       }
     });
   }
+  let todoList = JSON.stringify(todolist);
+  localStorage.setItem("Todo's", todoList);
+ 
 });
