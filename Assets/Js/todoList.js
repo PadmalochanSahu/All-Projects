@@ -22,7 +22,7 @@ btnAdd.addEventListener("click", () => {
   } else {
     todolist.push(todo);
     uncompletedT.push(todo);
-    CheckTodo.push(inputValue);
+    CheckTodo.push(inputValue.toLowerCase());
     document.getElementById("errorOne").style.display = "none";
     document.getElementById("errorTwo").style.display = "none";
     document.querySelector("#text").value = "";
@@ -59,7 +59,13 @@ btnAdd.addEventListener("click", () => {
         task.removeAttribute("readonly");
         editIcon.className = "fa-solid fa-floppy-disk";
         task.style.cursor = "text";
-      } else {
+      }else if((CheckTodo.indexOf(task.value.toLowerCase()) >= 0)){
+        document.getElementById("errorTwo").style.display = "block";
+        task.style.textDecoration = "underline";
+        task.style.color = "red";
+      }else{
+        document.getElementById("errorTwo").style.display = "none";
+        task.style.color = "black";
         task.setAttribute("readonly", "readonly");
         editIcon.className = "fa-solid fa-pen-to-square";
         task.style.cursor = "pointer";
@@ -70,15 +76,15 @@ btnAdd.addEventListener("click", () => {
             name: task.value,
             status: true,
           })
-        );
+          );
+        }
         CheckTodo.splice(todolist.indexOf(task.value), 1, task.value);
-      }
-    });
-    // Completed Or Not
-    task.addEventListener("click", function () {
-      if (
-        task.style.textDecoration != "line-through" &&
-        editIcon.className == "fa-solid fa-pen-to-square"
+      });
+      // Completed Or Not
+      task.addEventListener("click", function () {
+        if (
+          task.style.textDecoration != "line-through" &&
+          editIcon.className == "fa-solid fa-pen-to-square"
       ) {
         task.style.textDecoration = "line-through";
         todo.status = false;
@@ -141,4 +147,5 @@ btnAdd.addEventListener("click", () => {
       }
     });
   }
+  console.log(CheckTodo);
 });
