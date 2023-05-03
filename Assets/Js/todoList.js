@@ -147,5 +147,4 @@ btnAdd.addEventListener("click", () => {
       }
     });
   }
-  console.log(CheckTodo);
 });
