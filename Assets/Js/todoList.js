@@ -1,25 +1,26 @@
 let loaded = [];
-let lstodo = localStorage.getItem("Todo's");
+let lstodo = localStorage.getItem("Todo's") ? localStorage.getItem("Todo's") : '[]';
 lstodo = JSON.parse(lstodo);
-console.log(lstodo);
 for (let i = 0; i < lstodo.length; i++) {
- loaded.push(lstodo[i].name);
+  loaded.push(lstodo[i].name);
 }
-let initial = document.getElementById('list');
+let initial = document.getElementById("list");
 for (let i = 0; i < loaded.length; i++) {
   let init = `<div class="todoItem">
               <input type="text" class="inputV" value= "${loaded[i]}" readonly>
-              <div class="childDiv">
-              <i class="fa-solid fa-pen-to-square"></i>
-              <i class="fa-solid fa-trash" id="del" ></i>
-              </div>
+                <div class="childDiv">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <i class="fa-solid fa-trash" id ="del"></i>
+                </div>
               </div>`;
-  initial.innerHTML += init;
-}
-
+              initial.innerHTML += init;
+              deleteTodo();
+            }
+            
 
 let btnAdd = document.getElementById("btnAdd");
 let todolist = [];
+console.log(todolist);
 let CheckTodo = [];
 let completedTodo = [];
 let filterTodo = [];
@@ -36,7 +37,7 @@ btnAdd.addEventListener("click", () => {
   if (inputValue == "") {
     document.getElementById("errorOne").style.display = "block";
     document.getElementById("errorTwo").style.display = "none";
-  } else if (CheckTodo.indexOf(inputValue.toLowerCase()) >= 0) {
+  } else if (CheckTodo.indexOf(inputValue.toLowerCase()) >= 0 || (loaded.indexOf(inputValue.toLowerCase()) >= 0)) {
     document.getElementById("errorTwo").style.display = "block";
     document.getElementById("errorOne").style.display = "none";
   } else {
@@ -65,26 +66,29 @@ btnAdd.addEventListener("click", () => {
     nextDiv.appendChild(editIcon);
     deleteIcon.className = "fa-solid fa-trash";
     // Delete
-    deleteIcon.addEventListener("click", function () {
-      let deletePost = confirm("Do to really want to delete the todo?");
-      if (deletePost == true) {
-        mainDiv.remove();
-        todolist.splice(CheckTodo.indexOf(task.value), 1);
-        CheckTodo.splice(CheckTodo.indexOf(task.value), 1);
-        loaded.splice(CheckTodo.indexOf(task.value), 1);
-      }
-    });
+      deleteIcon.addEventListener("click", function () {
+        let deletePost = confirm("Do to really want to delete the todo?");
+        if (deletePost == true) {
+          mainDiv.remove();
+          todolist.splice(CheckTodo.indexOf(task.value), 1);
+          CheckTodo.splice(CheckTodo.indexOf(task.value), 1);
+          loaded.splice(CheckTodo.indexOf(task.value), 1);
+          todoList = JSON.stringify(todolist);
+          localStorage.setItem("Todo's", todoList);
+        }
+      });
+    
     // Edit
     editIcon.addEventListener("click", function () {
       if (editIcon.className == "fa-solid fa-pen-to-square") {
         task.removeAttribute("readonly");
         editIcon.className = "fa-solid fa-floppy-disk";
         task.style.cursor = "text";
-      }else if((CheckTodo.indexOf(task.value.toLowerCase()) >= 0)){
+      } else if (CheckTodo.indexOf(task.value.toLowerCase()) >= 0) {
         document.getElementById("errorTwo").style.display = "block";
         task.style.textDecoration = "underline";
         task.style.color = "red";
-      }else{
+      } else {
         document.getElementById("errorTwo").style.display = "none";
         task.style.color = "black";
         task.setAttribute("readonly", "readonly");
@@ -97,15 +101,16 @@ btnAdd.addEventListener("click", () => {
             name: task.value,
             status: true,
           })
-          );
-        }
-        CheckTodo.splice(todolist.indexOf(task.value), 1, task.value);
-      });
-      // Completed Or Not
-      task.addEventListener("click", function () {
-        if (
-          task.style.textDecoration != "line-through" &&
-          editIcon.className == "fa-solid fa-pen-to-square"
+        );
+      }
+      CheckTodo.splice(todolist.indexOf(task.value), 1, task.value);
+    });
+  
+    // Completed Or Not
+    task.addEventListener("click", function () {
+      if (
+        task.style.textDecoration != "line-through" &&
+        editIcon.className == "fa-solid fa-pen-to-square"
       ) {
         task.style.textDecoration = "line-through";
         todo.status = false;
@@ -130,38 +135,40 @@ btnAdd.addEventListener("click", () => {
         newList.innerHTML = "";
         for (let i = 0; i < todolist.length; i++) {
           let every = `<div class="todoItem">
-              <input type="text" class="inputV" value= "${todolist[i].name}" readonly>
-              <div class="childDiv">
-              <i class="fa-solid fa-pen-to-square"></i>
-              <i class="fa-solid fa-trash" id="del" ></i>
-              </div>
-              </div>`;
+          <input type="text" class="inputV" value= "${todolist[i].name}" readonly>
+          <div class="childDiv">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <i class="fa-solid fa-trash" id="del" ></i>
+          </div>
+          </div>`;
           all.push(every);
         }
         newList.innerHTML = all.join("");
+        deleteTodo();
       } else if (work == "Completed") {
         newList.innerHTML = "";
         filterTodo = [];
         for (let i = 0; i < completedTodo.length; i++) {
           let comp = `<div class="todoItem">
-              <input type="text" class="inputV" value= "${completedTodo[i].name}" readonly style="text-decoration:line-through">
-              <div class="childDiv">
-              <i class="fa-solid fa-trash" id="del" ></i>
-              </div>
-              </div>`;
+          <input type="text" class="inputV" value= "${completedTodo[i].name}" readonly style="text-decoration:line-through">
+          <div class="childDiv">
+          <i class="fa-solid fa-trash" id="del" ></i>
+          </div>
+          </div>`;
           filterTodo.push(comp);
         }
         newList.innerHTML = filterTodo.join("");
+        deleteTodo();
       } else if (work == "Uncompleted") {
         newList.innerHTML = "";
         filterTodo2 = [];
         for (let i = 0; i < uncompletedT.length; i++) {
           uncomp = `<div class="todoItem">
-              <input type="text" class="inputV" value= "${uncompletedT[i].name}" readonly>
-              <div class="childDiv">
-              <i class="fa-solid fa-trash" id="del" ></i>
-              </div>
-              </div>`;
+          <input type="text" class="inputV" value= "${uncompletedT[i].name}" readonly>
+          <div class="childDiv">
+          <i class="fa-solid fa-trash" id="del" ></i>
+          </div>
+          </div>`;
           filterTodo2.push(uncomp);
         }
         newList.innerHTML = filterTodo2.join("");
@@ -170,5 +177,21 @@ btnAdd.addEventListener("click", () => {
   }
   let todoList = JSON.stringify(todolist);
   localStorage.setItem("Todo's", todoList);
- 
 });
+
+function deleteTodo(){
+  let delIcon = document.querySelectorAll('.fa-trash');
+  delIcon.forEach((element,i) => {
+    element.addEventListener('click', function(){
+      let deletePost = confirm("Do to really want to delete the todo?");
+      if (deletePost == true) {
+        loaded.splice(i,1);
+        todolist.splice(i,1);
+        console.log('t',todolist);
+      }
+    })
+    // location.reload()
+  });  
+}
+
+  console.log('f',todolist)
