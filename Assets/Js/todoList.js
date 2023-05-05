@@ -1,23 +1,22 @@
 let loaded = [];
 let lstodo = localStorage.getItem("Todo's") ? localStorage.getItem("Todo's") : '[]';
-lstodo = JSON.parse(lstodo);
+lstodo = lstodo ? JSON.parse(lstodo): [];
 for (let i = 0; i < lstodo.length; i++) {
   loaded.push(lstodo[i].name);
 }
+console.log(loaded);
 let initial = document.getElementById("list");
 for (let i = 0; i < loaded.length; i++) {
-  let init = `<div class="todoItem">
+  let todo = `<div class="todoItem">
               <input type="text" class="inputV" value= "${loaded[i]}" readonly>
                 <div class="childDiv">
                     <i class="fa-solid fa-pen-to-square"></i>
                     <i class="fa-solid fa-trash" id ="del"></i>
                 </div>
               </div>`;
-              initial.innerHTML += init;
-              deleteTodo();
+              initial.innerHTML += todo;
+              deleteTodo(todo);
             }
-            
-
 let btnAdd = document.getElementById("btnAdd");
 let todolist = [];
 console.log(todolist);
@@ -134,28 +133,28 @@ btnAdd.addEventListener("click", () => {
         all = [];
         newList.innerHTML = "";
         for (let i = 0; i < todolist.length; i++) {
-          let every = `<div class="todoItem">
+          let todo = `<div class="todoItem">
           <input type="text" class="inputV" value= "${todolist[i].name}" readonly>
           <div class="childDiv">
           <i class="fa-solid fa-pen-to-square"></i>
           <i class="fa-solid fa-trash" id="del" ></i>
           </div>
           </div>`;
-          all.push(every);
+          all.push(todo);
         }
         newList.innerHTML = all.join("");
-        deleteTodo();
+        deleteTodo(todo);
       } else if (work == "Completed") {
         newList.innerHTML = "";
         filterTodo = [];
         for (let i = 0; i < completedTodo.length; i++) {
-          let comp = `<div class="todoItem">
+          let todo = `<div class="todoItem">
           <input type="text" class="inputV" value= "${completedTodo[i].name}" readonly style="text-decoration:line-through">
           <div class="childDiv">
           <i class="fa-solid fa-trash" id="del" ></i>
           </div>
           </div>`;
-          filterTodo.push(comp);
+          filterTodo.push(todo);
         }
         newList.innerHTML = filterTodo.join("");
         deleteTodo();
@@ -163,13 +162,13 @@ btnAdd.addEventListener("click", () => {
         newList.innerHTML = "";
         filterTodo2 = [];
         for (let i = 0; i < uncompletedT.length; i++) {
-          uncomp = `<div class="todoItem">
+          todo= `<div class="todoItem">
           <input type="text" class="inputV" value= "${uncompletedT[i].name}" readonly>
           <div class="childDiv">
           <i class="fa-solid fa-trash" id="del" ></i>
           </div>
           </div>`;
-          filterTodo2.push(uncomp);
+          filterTodo2.push(todo);
         }
         newList.innerHTML = filterTodo2.join("");
       }
@@ -179,19 +178,23 @@ btnAdd.addEventListener("click", () => {
   localStorage.setItem("Todo's", todoList);
 });
 
-function deleteTodo(){
+function deleteTodo(todo){
   let delIcon = document.querySelectorAll('.fa-trash');
   delIcon.forEach((element,i) => {
     element.addEventListener('click', function(){
       let deletePost = confirm("Do to really want to delete the todo?");
       if (deletePost == true) {
-        loaded.splice(i,1);
-        todolist.splice(i,1);
-        console.log('t',todolist);
+        let gopu = (todo,i)
+        loaded.splice(gopu,1);
+        todolist.splice(gopu,1);
+        completedTodo.splice(gopu,1);
+        uncompletedT.splice(gopu,1);
+        todoList = JSON.stringify(todolist);
+        localStorage.setItem("Todo's", todoList);
+        location.reload();
       }
     })
-    // location.reload()
   });  
 }
 
-  console.log('f',todolist)
+
